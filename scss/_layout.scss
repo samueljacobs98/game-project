@@ -1,0 +1,48 @@
+@use "./variables" as *;
+
+body {
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+    .game-container {
+        width: $small-game-container-width;
+        height: $small-game-container-width;
+
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        padding: 8px;
+
+        .game-container__tile {
+            min-height: $small-tile-width;
+            min-width: $small-tile-width;
+
+            line-height: $small-tile-width;
+
+            border-radius: 3px;
+        }
+    }
+}
+
+@media screen and (min-width: 520px) {
+    body {
+        .game-container {
+            width: $big-game-container-width;
+            height: $big-game-container-width;
+
+            padding: 14px;
+            gap: 14px;
+
+            .game-container__tile {
+                min-height: $big-tile-width;
+                min-width: $big-tile-width;
+
+                line-height: $big-tile-width;
+            }
+        }
+    }
+}

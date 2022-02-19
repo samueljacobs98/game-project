@@ -1,0 +1,33 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,900&display=swap');
+$font: 'Roboto', sans-serif;
+
+// Fonts sizing
+$small-tile-font: 1.5rem;
+$small-tile-font-smaller: 1.2rem;
+$big-tile-font: 2.5rem;
+$big-tile-font-smaller: 2rem;
+
+// Colours
+$tileEmpty-color: #c4c4c4;
+$tile2-colour: #84FFC9;
+$tile4-colour: #87F8CE;
+$tile8-colour: #8BF1D3;
+$tile16-colour: #8EEAD8;
+$tile32-colour: #92E3DD;
+$tile64-colour: #95DCE2;
+$tile128-colour: #9CCEEB;
+$tile256-colour: #A0C7F0;
+$tile512-colour: #A3C0F5;
+$tile1024-colour: #A7B9FA;
+$tile2048-colour: #AAB2FF;
+
+$grid-colour: #8B7E7E;
+$accent-colour: #8FBFE0;
+$background-colour: #3D5467;
+
+// Widths and Heights
+$small-game-container-width: 280px;
+$big-game-container-width: 500px;
+$small-tile-width: 58px;
+$big-tile-width: 107px;
