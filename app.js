@@ -11,30 +11,19 @@ let grid = [
   [0, 0, 0, 0],
 ];
 
-// console.table(grid)
-
-// console.log(start)
-// console.log(gameContainer)
-// console.log(gameContainer.children.length);
-// console.log(gameEnd)
-
 // Functions
 const checkKey = (event) => {
   switch (event.code) {
     case "ArrowUp":
-      //   console.log(event.code);
       moveUp();
       break;
     case "ArrowDown":
-      //   console.log(event.code);
       moveDown();
       break;
     case "ArrowRight":
-      //   console.log(event.code);
       moveRight();
       break;
     case "ArrowLeft":
-      //   console.log(event.code);
       moveLeft();
       break;
   }
@@ -55,7 +44,33 @@ const moveUp = () => {
       }
     }
   }
-  //   console.log(newGrid);
+
+  for (let i = 0; i < newGrid.length; i++) {
+    for (let j = 0; j < newGrid[i].length - 1; j++) {
+      if (newGrid[i][j] === newGrid[i][j + 1]) {
+        newGrid[i][j] += newGrid[i][j + 1];
+        newGrid[i][j + 1] = 0;
+        j++;
+      } else if (
+        newGrid[i][j + 1] === 0 &&
+        newGrid[i][j] === newGrid[i][j + 2] &&
+        j < 2
+      ) {
+        newGrid[i][j] += newGrid[i][j + 2];
+        newGrid[i][j + 2] = 0;
+        j++;
+      } else if (
+        newGrid[i][j + 1] === 0 &&
+        newGrid[i][j + 2] === 0 &&
+        newGrid[i][j] === newGrid[i][j + 3] &&
+        j < 1
+      ) {
+        newGrid[i][j] += newGrid[i][j + 3];
+        newGrid[i][j + 2] = 0;
+        j++;
+      }
+    }
+  }
 
   let pushArray = [[], [], [], []];
 
@@ -67,8 +82,6 @@ const moveUp = () => {
     }
   }
 
-  //   console.log(pushArray);
-
   for (let i = 0; i < pushArray.length; i++) {
     const count = 4 - pushArray[i].length;
     for (let j = 0; j < count; j++) {
@@ -76,7 +89,6 @@ const moveUp = () => {
     }
   }
 
-  //   console.log(pushArray);
   newGrid = [[], [], [], []];
   for (let i = 0; i < pushArray.length; i++) {
     for (let j = 0; j < pushArray[i].length; j++) {
@@ -84,9 +96,8 @@ const moveUp = () => {
     }
   }
 
-  //   console.log(newGrid);
   grid = newGrid;
-  //   console.log(grid);
+
   updateGrid();
 };
 
@@ -105,7 +116,33 @@ const moveDown = () => {
       }
     }
   }
-  console.log(newGrid);
+
+  for (let i = 0; i < newGrid.length; i++) {
+    for (let j = 3; j > 0; j--) {
+      if (newGrid[i][j] === newGrid[i][j - 1]) {
+        newGrid[i][j] += newGrid[i][j - 1];
+        newGrid[i][j - 1] = 0;
+        j--;
+      } else if (
+        newGrid[i][j - 1] === 0 &&
+        newGrid[i][j] === newGrid[i][j - 2] &&
+        j > 1
+      ) {
+        newGrid[i][j] += newGrid[i][j - 2];
+        newGrid[i][j - 2] = 0;
+        j--;
+      } else if (
+        newGrid[i][j - 1] === 0 &&
+        newGrid[i][j - 2] === 0 &&
+        newGrid[i][j] === newGrid[i][j - 3] &&
+        j > 2
+      ) {
+        newGrid[i][j] += newGrid[i][j - 3];
+        newGrid[i][j - 2] = 0;
+        j--;
+      }
+    }
+  }
 
   let pushArray = [[], [], [], []];
 
@@ -117,8 +154,6 @@ const moveDown = () => {
     }
   }
 
-  //   console.log(pushArray);
-
   for (let i = 0; i < pushArray.length; i++) {
     const count = 4 - pushArray[i].length;
     for (let j = 0; j < count; j++) {
@@ -126,7 +161,6 @@ const moveDown = () => {
     }
   }
 
-  //   console.log(pushArray);
   newGrid = [[], [], [], []];
   for (let i = 0; i < pushArray.length; i++) {
     for (let j = 0; j < pushArray[i].length; j++) {
@@ -134,13 +168,38 @@ const moveDown = () => {
     }
   }
 
-  // console.log(newGrid);
   grid = newGrid;
-  // console.log(grid);
   updateGrid();
 };
 
 const moveRight = () => {
+    for (let i = 0; i < grid.length; i++) {
+        for (let j = 3; j > 0; j--) {
+          if (grid[i][j] === grid[i][j - 1]) {
+            grid[i][j] += grid[i][j - 1];
+            grid[i][j - 1] = 0;
+            j--;
+          } else if (
+            grid[i][j - 1] === 0 &&
+            grid[i][j] === grid[i][j - 2] &&
+            j > 1
+          ) {
+            grid[i][j] += grid[i][j - 2];
+            grid[i][j - 2] = 0;
+            j--;
+          } else if (
+            grid[i][j - 1] === 0 &&
+            grid[i][j - 2] === 0 &&
+            grid[i][j] === grid[i][j - 3] &&
+            j > 2
+          ) {
+            grid[i][j] += grid[i][j - 3];
+            grid[i][j - 2] = 0;
+            j--;
+          }
+        }
+      }
+
   let pushArray = [[], [], [], []];
 
   for (let i = 0; i < grid.length; i++) {
@@ -164,6 +223,35 @@ const moveRight = () => {
 };
 
 const moveLeft = () => {
+  console.log(grid);
+
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length - 1; j++) {
+      if (grid[i][j] === grid[i][j + 1]) {
+        grid[i][j] += grid[i][j + 1];
+        grid[i][j + 1] = 0;
+        j++;
+      } else if (
+        grid[i][j + 1] === 0 &&
+        grid[i][j] === grid[i][j + 2] &&
+        j < 2
+      ) {
+        grid[i][j] += grid[i][j + 2];
+        grid[i][j + 2] = 0;
+        j++;
+      } else if (
+                grid[i][j + 1] === 0 &&
+                grid[i][j + 2] === 0 &&
+                grid[i][j] === grid[i][j + 3] &&
+                j < 1
+              ) {
+                grid[i][j] += grid[i][j + 3];
+                grid[i][j + 2] = 0;
+                j++;
+              }
+    }
+  }
+
   let pushArray = [[], [], [], []];
 
   for (let i = 0; i < grid.length; i++) {
@@ -206,8 +294,6 @@ const addNumber = () => {
   } else {
     grid[randomLocation[0]][randomLocation[1]] = newNumber;
   }
-
-  //   console.log(grid);
 };
 
 const updateGrid = () => {
@@ -221,8 +307,6 @@ const updateGrid = () => {
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[i].length; j++) {
       if (grid[i][j] !== 0) {
-        // gameContainer.children.item(i * 4 + j).className =
-        //   "game-container__tile";
         gameContainer.children.item(i * 4 + j).innerText = grid[i][j];
         gameContainer.children
           .item(i * 4 + j)

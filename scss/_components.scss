@@ -58,42 +58,40 @@ body {
       font-weight: bold;
     }
 
-    .game-container__tile--four-figures {
-        font-size: $small-tile-font-smaller;
-    }
-
     .game-container__tile--2 {
-        background-color: $tile2-colour;
+      background-color: $tile2-colour;
     }
     .game-container__tile--4 {
-        background-color: $tile4-colour;
+      background-color: $tile4-colour;
     }
     .game-container__tile--8 {
-        background-color: $tile8-colour;
+      background-color: $tile8-colour;
     }
     .game-container__tile--16 {
-        background-color: $tile16-colour;
+      background-color: $tile16-colour;
     }
     .game-container__tile--32 {
-        background-color: $tile32-colour;
+      background-color: $tile32-colour;
     }
     .game-container__tile--64 {
-        background-color: $tile64-colour;
+      background-color: $tile64-colour;
     }
     .game-container__tile--128 {
-        background-color: $tile128-colour;
+      background-color: $tile128-colour;
     }
     .game-container__tile--256 {
-        background-color: $tile256-colour;
+      background-color: $tile256-colour;
     }
     .game-container__tile--512 {
-        background-color: $tile512-colour;
+      background-color: $tile512-colour;
     }
     .game-container__tile--1024 {
-        background-color: $tile1024-colour;
+      background-color: $tile1024-colour;
+      font-size: $small-tile-font-smaller;
     }
     .game-container__tile--2048 {
-        background-color: $tile2048-colour;
+      background-color: $tile2048-colour;
+      font-size: $small-tile-font-smaller;
     }
   }
 
@@ -103,15 +101,18 @@ body {
 }
 
 @media screen and (min-width: 520px) {
-    body {
-        .game-container {
-            .game-container__tile {
-                font-size: $big-tile-font;
-            }
+  body {
+    .game-container {
+      .game-container__tile {
+        font-size: $big-tile-font;
+      }
 
-            .game-container__tile--four-figures {
-                font-size: $big-tile-font-smaller;
-            }
-        }
+      .game-container__tile--1024 {
+        font-size: $big-tile-font-smaller;
+      }
+      .game-container__tile--2048 {
+        font-size: $big-tile-font-smaller;
+      }
     }
+  }
 }

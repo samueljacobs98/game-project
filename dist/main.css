@@ -89,9 +89,6 @@ body .game-container .game-container__tile {
   text-align: center;
   font-weight: bold;
 }
-body .game-container .game-container__tile--four-figures {
-  font-size: 1.2rem;
-}
 body .game-container .game-container__tile--2 {
   background-color: #84FFC9;
 }
@@ -121,9 +118,11 @@ body .game-container .game-container__tile--512 {
 }
 body .game-container .game-container__tile--1024 {
   background-color: #A7B9FA;
+  font-size: 1.2rem;
 }
 body .game-container .game-container__tile--2048 {
   background-color: #AAB2FF;
+  font-size: 1.2rem;
 }
 body .game-container--no-display {
   display: none;
@@ -133,7 +132,10 @@ body .game-container--no-display {
   body .game-container .game-container__tile {
     font-size: 2.5rem;
   }
-  body .game-container .game-container__tile--four-figures {
+  body .game-container .game-container__tile--1024 {
+    font-size: 2rem;
+  }
+  body .game-container .game-container__tile--2048 {
     font-size: 2rem;
   }
 }
