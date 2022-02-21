@@ -4,6 +4,31 @@ body {
   font-family: $font;
   background-color: $background-colour;
 
+  .header {
+    padding-bottom: $padding;
+    .header__title {
+      margin-left: $gap;
+      font-size: 3rem;
+      color: $tileEmpty-color;
+      letter-spacing: 0.2ch;
+    }
+
+    .header__score-container {
+      padding: $smallest-padding;
+      background-color: $accent-colour;
+      border-radius: $small-padding;
+      min-width: $small-tile-width;
+
+      .header__score-title {
+        font-size: $score-font-smaller;
+        text-align: center;
+      }
+      .header__score {
+        text-align: center;
+      }
+    }
+  }
+
   .start {
     background-color: $accent-colour;
     color: $background-colour;
@@ -25,18 +50,18 @@ body {
   .game-over {
     background-color: $accent-colour;
     color: $background-colour;
-    padding: 8px 16px;
-    border-radius: 5px;
+    padding: $small-padding $padding;
+    border-radius: $smallest-padding;
     border: 4px solid #444444;
     box-shadow: 5px 5px 5px;
     text-align: center;
 
     .game-over__text {
-      font-size: 2rem;
-      padding: 5px;
+      font-size: $big-tile-font-smaller;
+      padding: $smallest-padding;
     }
     .game-over__score {
-      font-size: 1.2rem;
+      font-size: $small-tile-font-smaller;
     }
   }
 

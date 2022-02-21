@@ -3,6 +3,7 @@
 $font: 'Roboto', sans-serif;
 
 // Fonts sizing
+$score-font-smaller: 0.75rem;
 $small-tile-font: 1.5rem;
 $small-tile-font-smaller: 1.2rem;
 $big-tile-font: 2.5rem;
@@ -31,3 +32,10 @@ $small-game-container-width: 280px;
 $big-game-container-width: 500px;
 $small-tile-width: 58px;
 $big-tile-width: 107px;
+
+// Padding, Borders, Radii
+
+$smallest-padding: 5px;
+$small-padding: 0.5rem;
+$padding: 1rem;
+$gap: 8px;

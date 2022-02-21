@@ -3,7 +3,9 @@ const start = document.querySelector(".start");
 const gameContainer = document.querySelector(".game-container");
 const tiles = document.querySelectorAll(".game-container__tile");
 const gameEnd = document.querySelector(".game-over");
+const score = document.querySelector(".header__score")
 
+let scoreCount = 0;
 let grid;
 let previousGrid;
 
@@ -75,7 +77,9 @@ const mergeSameNumbers = (array, mergeFromStart) => {
             for (let j = 0; j < array[i].length; j++) {
                 if (array[i][j] === array[i][j + 1]) {
                     array[i][j] += array[i][j + 1]
+                    scoreCount += array[i][j]
                     array[i].splice(j+1, 1)
+                    j++
                 }
             }
         }
@@ -84,6 +88,7 @@ const mergeSameNumbers = (array, mergeFromStart) => {
             for (let j = array[i].length - 1; j > 0; j--) {
                 if (array[i][j] === array[i][j - 1]) {
                     array[i][j] += array[i][j - 1]
+                    scoreCount += array[i][j]
                     array[i].splice(j-1, 1)
                     j--
                 }
@@ -168,12 +173,17 @@ const addNumber = () => {
   }
 };
 
+const updateScore = () => {
+  score.innerText = `${scoreCount}`
+}
+
 const updateGrid = (start) => {
   start = start || false;
   if (start === true) {
     addNumber();
   }
   addNumber();
+  updateScore()
 
   for (div in gameContainer.children) {
     gameContainer.children.item(div).className = "game-container__tile";

@@ -5,9 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sammy's 2048 Game</title>
-    <link rel="stylesheet" href="./dist/main.css">
+    <link rel="stylesheet" href="./main.css">
 </head>
 <body>
+    <header class="header">
+        <h1 class="header__title">2048</h1>
+        <div class="header__score-container">
+            <h2 class="header__score-title">Score:</h2>
+            <p class="header__score">0</p>
+        </div>
+    </header>
     <p class="start">Start Game</p>
     <div class="game-container game-container--no-display">
         <div class="game-container__tile"></div>

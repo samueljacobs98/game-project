@@ -3,10 +3,26 @@
 body {
     display: flex;
     flex-direction: column;
-    // justify-content: space-around;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    position: relative;
+
+    .header {
+        top: 0;        
+        width: $small-game-container-width;
+        
+        display: flex;
+        justify-content: space-between;
+
+        .header__title {
+            text-align: left;
+        }
+
+        .header__score-container {
+            align-self: center;
+        }
+    }
 
     .game-container {
         width: $small-game-container-width;
@@ -14,8 +30,8 @@ body {
 
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 8px;
-        padding: 8px;
+        gap: $gap;
+        padding: $gap;
 
         .game-container__tile {
             min-height: $small-tile-width;
@@ -30,6 +46,10 @@ body {
 
 @media screen and (min-width: 520px) {
     body {
+        .header {
+            width: $big-game-container-width
+        }
+
         .game-container {
             width: $big-game-container-width;
             height: $big-game-container-width;
