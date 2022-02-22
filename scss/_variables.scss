@@ -8,6 +8,7 @@ $small-tile-font: 1.5rem;
 $small-tile-font-smaller: 1.2rem;
 $big-tile-font: 2.5rem;
 $big-tile-font-smaller: 2rem;
+$small-header-font: 3rem;
 
 // Colours
 $tileEmpty-color: #c4c4c4;
@@ -27,14 +28,19 @@ $grid-colour: #8B7E7E;
 $accent-colour: #8FBFE0;
 $background-colour: #3D5467;
 
+$modal-background: rgba(170, 178, 255, 0.7);
+$modal-button: #84FFC9;
+
 // Widths and Heights
+$small-container-width: 288px;
 $small-game-container-width: 280px;
+$big-container-width: 508px;
 $big-game-container-width: 500px;
 $small-tile-width: 58px;
 $big-tile-width: 107px;
 
 // Padding, Borders, Radii
-
+$margin-top: 2rem;
 $smallest-padding: 5px;
 $small-padding: 0.5rem;
 $padding: 1rem;

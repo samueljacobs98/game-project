@@ -3,7 +3,10 @@ const start = document.querySelector(".start");
 const gameContainer = document.querySelector(".game-container");
 const tiles = document.querySelectorAll(".game-container__tile");
 const gameEnd = document.querySelector(".game-over");
-const score = document.querySelector(".header__score")
+const score = document.querySelector(".header__score");
+const youWinModal = document.querySelector(".modal")
+const winningScore = document.querySelector(".win-container__text")
+const winContainerButtons = document.querySelectorAll(".win-container__buttons")
 
 let scoreCount = 0;
 let grid;
@@ -11,26 +14,16 @@ let previousGrid;
 
 // Functions
 const getGrid = () => {
-    let array = [[],[],[],[]]
-    let i = 0;
+  let array = [[], [], [], []];
+  let i = 0;
 
-    for (div in gameContainer.children) {
-        if (i < 4) {
-            array[0].push(Number(gameContainer.children.item(div).innerHTML))
-            i++
-        } else if (i < 8) {
-            array[1].push(Number(gameContainer.children.item(div).innerHTML))
-            i++
-        } else if (i < 12) {
-            array[2].push(Number(gameContainer.children.item(div).innerHTML))
-            i++
-        } else if (i < 16) {
-            array[3].push(Number(gameContainer.children.item(div).innerHTML))
-            i++
-        }
-    }
-    return array
-}
+  tiles.forEach((div, index) => {
+    const arrayIndex = Math.floor(index/4);
+    array[arrayIndex].push(Number(div.innerText));
+  })
+
+  return array;
+};
 
 const checkKey = (event) => {
   previousGrid = getGrid();
@@ -51,102 +44,102 @@ const checkKey = (event) => {
 };
 
 const transpose2DArray = (array) => {
-    let transposedArray = [[], [], [], []];
-    for (let i = 0; i < array.length; i++) {
-      for (let j = 0; j < array[i].length; j++) {
-        transposedArray[j].push(array[i].slice(j, j + 1));
-      }
+  let transposedArray = [[], [], [], []];
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array[i].length; j++) {
+      transposedArray[j].push(array[i].slice(j, j + 1));
     }
-    for (let i = 0; i < transposedArray.length; i++) {
-        transposedArray[i] = transposedArray[i].flat()
-    }
-    return transposedArray;
+  }
+  for (let i = 0; i < transposedArray.length; i++) {
+    transposedArray[i] = transposedArray[i].flat();
+  }
+  return transposedArray;
 };
 
 const getNonZeroArray = (array) => {
-    let nonZeroArray = [[],[],[],[]]
-    for (let i = 0; i < array.length; i++) {
-        nonZeroArray[i] = array[i].filter(element => element !== 0)
-    }
-    return nonZeroArray
-}
+  let nonZeroArray = [[], [], [], []];
+  for (let i = 0; i < array.length; i++) {
+    nonZeroArray[i] = array[i].filter((element) => element !== 0);
+  }
+  return nonZeroArray;
+};
 
 const mergeSameNumbers = (array, mergeFromStart) => {
-    if (mergeFromStart) {
-        for (let i = 0; i < array.length; i++) {
-            for (let j = 0; j < array[i].length; j++) {
-                if (array[i][j] === array[i][j + 1]) {
-                    array[i][j] += array[i][j + 1]
-                    scoreCount += array[i][j]
-                    array[i].splice(j+1, 1)
-                    j++
-                }
-            }
+  if (mergeFromStart) {
+    for (let i = 0; i < array.length; i++) {
+      for (let j = 0; j < array[i].length; j++) {
+        if (array[i][j] === array[i][j + 1]) {
+          array[i][j] += array[i][j + 1];
+          scoreCount += array[i][j];
+          array[i].splice(j + 1, 1);
+          j++;
         }
-    } else {
-        for (let i = 0; i < array.length; i++) {
-            for (let j = array[i].length - 1; j > 0; j--) {
-                if (array[i][j] === array[i][j - 1]) {
-                    array[i][j] += array[i][j - 1]
-                    scoreCount += array[i][j]
-                    array[i].splice(j-1, 1)
-                    j--
-                }
-            }
-        }
+      }
     }
-    return array
-}
+  } else {
+    for (let i = 0; i < array.length; i++) {
+      for (let j = array[i].length - 1; j > 0; j--) {
+        if (array[i][j] === array[i][j - 1]) {
+          array[i][j] += array[i][j - 1];
+          scoreCount += array[i][j];
+          array[i].splice(j - 1, 1);
+          j--;
+        }
+      }
+    }
+  }
+  return array;
+};
 
 const getSquareArray = (nonZeroArray, start) => {
-    for (let i = 0; i < nonZeroArray.length; i++) {
-        const count = 4 - nonZeroArray[i].length;
-        for (let j = 0; j < count; j++) {
-            if (start) {
-                nonZeroArray[i].push(0)
-            } else {
-                nonZeroArray[i].unshift(0)
-            }
-        }
+  for (let i = 0; i < nonZeroArray.length; i++) {
+    const count = 4 - nonZeroArray[i].length;
+    for (let j = 0; j < count; j++) {
+      if (start) {
+        nonZeroArray[i].push(0);
+      } else {
+        nonZeroArray[i].unshift(0);
+      }
     }
-    return nonZeroArray;
-}
-
+  }
+  return nonZeroArray;
+};
 
 const checkForUpdate = (previousGrid, currentGrid) => {
-    if (JSON.stringify(previousGrid) !== JSON.stringify(currentGrid)) {
-        grid = [...currentGrid]
-        updateGrid()
-    }
-}
+  if (JSON.stringify(previousGrid) !== JSON.stringify(currentGrid)) {
+    grid = [...currentGrid];
+    updateGrid();
+    return true;
+  }
+};
 
 const moveUp = () => {
-    let transposedArray = transpose2DArray(previousGrid)
-    let nonZeroArray = getNonZeroArray(transposedArray)
-    let condensedArray = mergeSameNumbers(nonZeroArray, true)
-    let squareArray = getSquareArray(condensedArray, true)
-    let finalArray = transpose2DArray(squareArray)
-    checkForUpdate(previousGrid, finalArray)
+  let transposedArray = transpose2DArray(previousGrid);
+  let nonZeroArray = getNonZeroArray(transposedArray);
+  let condensedArray = mergeSameNumbers(nonZeroArray, true);
+  let squareArray = getSquareArray(condensedArray, true);
+  let finalArray = transpose2DArray(squareArray);
+  checkForUpdate(previousGrid, finalArray);
 };
 const moveDown = () => {
-    let transposedArray = transpose2DArray(previousGrid)
-    let nonZeroArray = getNonZeroArray(transposedArray)
-    let condensedArray = mergeSameNumbers(nonZeroArray, false)
-    let squareArray = getSquareArray(condensedArray, false)
-    let finalArray = transpose2DArray(squareArray)
-    checkForUpdate(previousGrid, finalArray)
+  let transposedArray = transpose2DArray(previousGrid);
+  let nonZeroArray = getNonZeroArray(transposedArray);
+  let condensedArray = mergeSameNumbers(nonZeroArray, false);
+  let squareArray = getSquareArray(condensedArray, false);
+  let finalArray = transpose2DArray(squareArray);
+  checkForUpdate(previousGrid, finalArray);
 };
 const moveRight = () => {
-    let nonZeroArray = getNonZeroArray(previousGrid)
-    let condensedArray = mergeSameNumbers(nonZeroArray, false)
-    let finalArray = getSquareArray(condensedArray, false)
-    checkForUpdate(previousGrid, finalArray)
+  let nonZeroArray = getNonZeroArray(previousGrid);
+  let condensedArray = mergeSameNumbers(nonZeroArray, false);
+  let finalArray = getSquareArray(condensedArray, false);
+  checkForUpdate(previousGrid, finalArray);
 };
 const moveLeft = () => {
-    let nonZeroArray = getNonZeroArray(previousGrid)
-    let condensedArray = mergeSameNumbers(nonZeroArray, true)
-    let finalArray = getSquareArray(condensedArray, true)
-    checkForUpdate(previousGrid, finalArray)
+  let nonZeroArray = getNonZeroArray(previousGrid);
+  let condensedArray = mergeSameNumbers(nonZeroArray, true);
+  let finalArray = getSquareArray(condensedArray, true);
+  checkForUpdate(previousGrid, finalArray);
 };
 
 const newNumber = () => {
@@ -159,8 +152,11 @@ const newNumber = () => {
 };
 
 const randomLocation = () => {
-    const location = [Math.floor(Math.random() * 4), Math.floor(Math.random() * 4)];
-  return location
+  const location = [
+    Math.floor(Math.random() * 4),
+    Math.floor(Math.random() * 4),
+  ];
+  return location;
 };
 
 const addNumber = () => {
@@ -169,12 +165,28 @@ const addNumber = () => {
   if (grid[randomNewLocation[0]][randomNewLocation[1]] !== 0) {
     addNumber();
   } else {
-    grid[randomNewLocation[0]][randomNewLocation[1]] = randomNewNumber
+    grid[randomNewLocation[0]][randomNewLocation[1]] = randomNewNumber;
   }
 };
 
 const updateScore = () => {
-  score.innerText = `${scoreCount}`
+  score.innerText = `${scoreCount}`;
+};
+
+const checkFor2048 = () => {
+  let check = false;
+  for (i = 0; i < grid.length; i++) {
+    check = grid[i].includes(8);
+    if (check === true) {
+      break;
+    }
+  }
+  return check;
+};
+
+const youWin = () => {
+  winningScore.innerHTML = `Score: ${scoreCount}`
+  youWinModal.classList.remove("modal--no-display")
 }
 
 const updateGrid = (start) => {
@@ -183,7 +195,7 @@ const updateGrid = (start) => {
     addNumber();
   }
   addNumber();
-  updateScore()
+  updateScore();
 
   for (div in gameContainer.children) {
     gameContainer.children.item(div).className = "game-container__tile";
@@ -200,8 +212,16 @@ const updateGrid = (start) => {
       }
     }
   }
+
+  if (checkFor2048()) {
+    youWin()
+  }
 };
 
+
+// const checkWinButton = (button) => {
+//   console.log(button)
+// }
 // Interaction
 start.addEventListener("click", () => {
   start.classList.add("start--no-display");
@@ -211,8 +231,12 @@ start.addEventListener("click", () => {
     [0, 0, 0, 0],
     [0, 0, 0, 0],
     [0, 0, 0, 0],
-  ]
+  ];
   updateGrid(true);
 });
+
+// winContainerButtons.forEach(button => {
+//   button.addEventListener("click", checkWinButton)
+// })
 
 document.addEventListener("keydown", checkKey);

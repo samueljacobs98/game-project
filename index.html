@@ -8,35 +8,50 @@
     <link rel="stylesheet" href="./main.css">
 </head>
 <body>
-    <header class="header">
-        <h1 class="header__title">2048</h1>
-        <div class="header__score-container">
-            <h2 class="header__score-title">Score:</h2>
-            <p class="header__score">0</p>
+    <div class="container">
+        <header class="header">
+            <h1 class="header__title">2048</h1>
+            <div class="header__score-container">
+                <h2 class="header__score-title">Score:</h2>
+                <p class="header__score">0</p>
+            </div>
+        </header>
+        <p class="start">Start Game</p>
+        <div class="game-container game-container--no-display">
+            <div class="game-container__tile"></div>
+            <div class="game-container__tile"></div>
+            <div class="game-container__tile"></div>
+            <div class="game-container__tile"></div>
+            <div class="game-container__tile"></div>
+            <div class="game-container__tile"></div>
+            <div class="game-container__tile"></div>
+            <div class="game-container__tile"></div>
+            <div class="game-container__tile"></div>
+            <div class="game-container__tile"></div>
+            <div class="game-container__tile"></div>
+            <div class="game-container__tile"></div>
+            <div class="game-container__tile"></div>
+            <div class="game-container__tile"></div>
+            <div class="game-container__tile"></div>
+            <div class="game-container__tile"></div>
         </div>
-    </header>
-    <p class="start">Start Game</p>
-    <div class="game-container game-container--no-display">
-        <div class="game-container__tile"></div>
-        <div class="game-container__tile"></div>
-        <div class="game-container__tile"></div>
-        <div class="game-container__tile"></div>
-        <div class="game-container__tile"></div>
-        <div class="game-container__tile"></div>
-        <div class="game-container__tile"></div>
-        <div class="game-container__tile"></div>
-        <div class="game-container__tile"></div>
-        <div class="game-container__tile"></div>
-        <div class="game-container__tile"></div>
-        <div class="game-container__tile"></div>
-        <div class="game-container__tile"></div>
-        <div class="game-container__tile"></div>
-        <div class="game-container__tile"></div>
-        <div class="game-container__tile"></div>
+
+        <div class="game-over game-over--no-display">
+            <p class="game-over__text">Game Over!</p>
+            <p class="game-over__score">Your Score: 126</p>
+        </div>
     </div>
-    <div class="game-over game-over--no-display">
-        <p class="game-over__text">Game Over!</p>
-        <p class="game-over__score">Your Score: 126</p>
+    <div class="modal modal--no-display">
+        <div class="modal__win-container">
+            <h2 class="win-container__header">You win!</h2>
+            <p class="win-container__text"></p>
+            <hr>
+            <p class="win-container__continue-text">Would you like to continue?</p>
+            <div class="win-container__responses">
+                <button class="win-container__buttons">Yes</button>
+                <button class="win-container__buttons">New Game</button>
+            </div>
+        </div>
     </div>
     <script src="app.js"></script>
 </body>
