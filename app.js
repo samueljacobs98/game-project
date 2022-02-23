@@ -4,42 +4,102 @@ const gameContainer = document.querySelector(".game-container");
 const tiles = document.querySelectorAll(".game-container__tile");
 const gameEnd = document.querySelector(".game-over");
 const score = document.querySelector(".header__score");
-const youWinModal = document.querySelector(".modal")
-const winningScore = document.querySelector(".win-container__text")
-const winContainerButtons = document.querySelectorAll(".win-container__buttons")
+const newGameButton = document.querySelector(".header__new-game-button");
+const winContainerButtons = document.querySelectorAll(
+  ".win-container__buttons"
+);
+const modal = document.querySelector(".modal");
+const winScore = document.querySelector(".win-container__text")
+const header = document.querySelector(".win-container__header")
+const continueText = document.querySelector(".win-container__continue-text")
+const yesButton = document.querySelector(".win-container__yes-button")
 
-let scoreCount = 0;
+
+let scoreCount;
 let grid;
 let previousGrid;
+let reach2048;
 
 // Functions
+const initialiseGrid = () => {
+  grid = [
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+  ];
+};
+
 const getGrid = () => {
   let array = [[], [], [], []];
   let i = 0;
 
   tiles.forEach((div, index) => {
-    const arrayIndex = Math.floor(index/4);
+    const arrayIndex = Math.floor(index / 4);
     array[arrayIndex].push(Number(div.innerText));
-  })
+  });
 
   return array;
 };
 
+const rowsGameMayEnd = (checkGrid) => {
+  for (let i = 0; i < checkGrid.length; i++) {
+    for (let j = 0; j < checkGrid[i].length - 1; j++) {
+      if (checkGrid[i][j] === checkGrid[i][j + 1]) {
+        return false;
+      }
+    }
+  }
+  return true;
+};
+
+const columnsGameMayEnd = (checkGrid) => {
+  transposedCheckGrid = transpose2DArray(checkGrid);
+  return rowsGameMayEnd(transposedCheckGrid);
+};
+
+const checkGameOver = (checkGrid) => {
+  if (!checkForNumber(0)) {
+    if (rowsGameMayEnd(checkGrid)) {
+      if (columnsGameMayEnd(checkGrid)) {
+        return true;
+      }
+    }
+  }
+  return false;
+};
+
+const gameOverModal = () => {
+  header.innerText = "Game Over!"
+  continueText.innerText = "Play again?"
+}
+
+const gameOver = () => {
+  // console.log("game over");
+  printModal()
+  gameOverModal()
+};
+
 const checkKey = (event) => {
   previousGrid = getGrid();
-  switch (event.code) {
-    case "ArrowUp":
-      moveUp();
-      break;
-    case "ArrowDown":
-      moveDown();
-      break;
-    case "ArrowRight":
-      moveRight();
-      break;
-    case "ArrowLeft":
-      moveLeft();
-      break;
+  if (checkGameOver(previousGrid)) {
+    gameOver();
+    return;
+  } else {
+    switch (event.code) {
+      case "ArrowUp":
+        moveUp();
+        break;
+      case "ArrowDown":
+        moveDown();
+        break;
+      case "ArrowRight":
+        moveRight();
+        break;
+      case "ArrowLeft":
+        moveLeft();
+        break;
+    }
   }
 };
 
@@ -105,7 +165,7 @@ const getSquareArray = (nonZeroArray, start) => {
   return nonZeroArray;
 };
 
-const checkForUpdate = (previousGrid, currentGrid) => {
+const checkForUpdate = (currentGrid) => {
   if (JSON.stringify(previousGrid) !== JSON.stringify(currentGrid)) {
     grid = [...currentGrid];
     updateGrid();
@@ -113,33 +173,39 @@ const checkForUpdate = (previousGrid, currentGrid) => {
   }
 };
 
+const move = (transpose, fromStart) => {
+  let alignedArray;
+
+  if (transpose) {
+    alignedArray = transpose2DArray(previousGrid);
+  } else {
+    alignedArray = [...previousGrid];
+  }
+
+  let nonZeroArray = getNonZeroArray(alignedArray);
+  let condensedArray = mergeSameNumbers(nonZeroArray, fromStart);
+  let squareArray = getSquareArray(condensedArray, fromStart);
+
+  if (transpose) {
+    finalArray = transpose2DArray(squareArray);
+  } else {
+    finalArray = [...squareArray];
+  }
+
+  return finalArray;
+};
+
 const moveUp = () => {
-  let transposedArray = transpose2DArray(previousGrid);
-  let nonZeroArray = getNonZeroArray(transposedArray);
-  let condensedArray = mergeSameNumbers(nonZeroArray, true);
-  let squareArray = getSquareArray(condensedArray, true);
-  let finalArray = transpose2DArray(squareArray);
-  checkForUpdate(previousGrid, finalArray);
+  checkForUpdate(move(true, true));
 };
 const moveDown = () => {
-  let transposedArray = transpose2DArray(previousGrid);
-  let nonZeroArray = getNonZeroArray(transposedArray);
-  let condensedArray = mergeSameNumbers(nonZeroArray, false);
-  let squareArray = getSquareArray(condensedArray, false);
-  let finalArray = transpose2DArray(squareArray);
-  checkForUpdate(previousGrid, finalArray);
+  checkForUpdate(move(true, false));
 };
 const moveRight = () => {
-  let nonZeroArray = getNonZeroArray(previousGrid);
-  let condensedArray = mergeSameNumbers(nonZeroArray, false);
-  let finalArray = getSquareArray(condensedArray, false);
-  checkForUpdate(previousGrid, finalArray);
+  checkForUpdate(move(false, false));
 };
 const moveLeft = () => {
-  let nonZeroArray = getNonZeroArray(previousGrid);
-  let condensedArray = mergeSameNumbers(nonZeroArray, true);
-  let finalArray = getSquareArray(condensedArray, true);
-  checkForUpdate(previousGrid, finalArray);
+  checkForUpdate(move(false, true));
 };
 
 const newNumber = () => {
@@ -173,10 +239,10 @@ const updateScore = () => {
   score.innerText = `${scoreCount}`;
 };
 
-const checkFor2048 = () => {
+const checkForNumber = (numberToCheck) => {
   let check = false;
   for (i = 0; i < grid.length; i++) {
-    check = grid[i].includes(8);
+    check = grid[i].includes(numberToCheck);
     if (check === true) {
       break;
     }
@@ -184,10 +250,29 @@ const checkFor2048 = () => {
   return check;
 };
 
-const youWin = () => {
-  winningScore.innerHTML = `Score: ${scoreCount}`
-  youWinModal.classList.remove("modal--no-display")
+const defaultModal = () => {
+  header.innerText = "";
+  continueText.innerText = "";
+  yesButton.classList.add("win-container__yes-button--hide")
 }
+
+const printModal = () => {
+  defaultModal();
+  modal.classList.remove("modal--no-display");
+  winScore.innerText = `Your score: ${scoreCount}`
+};
+
+const youWinModal = () => {
+  header.innerText = "You win!"
+  continueText.innerText = "Would you like to continue?"
+  yesButton.classList.remove("win-container__yes-button--hide")
+}
+
+const youWin = () => {
+  printModal();
+  youWinModal()
+  reach2048 = true;
+};
 
 const updateGrid = (start) => {
   start = start || false;
@@ -213,30 +298,37 @@ const updateGrid = (start) => {
     }
   }
 
-  if (checkFor2048()) {
-    youWin()
+  if (checkForNumber(8) && !reach2048) {
+    youWin();
   }
 };
 
+const newGame = () => {
+  scoreCount = 0;
+  reach2048 = false;
+  initialiseGrid();
+  updateGrid(true);
+};
 
-// const checkWinButton = (button) => {
-//   console.log(button)
-// }
+const checkWinButton = (button) => {
+  const response = button.target.innerText;
+  modal.classList.add("modal--no-display");
+  if (response === "New Game") {
+    newGame();
+  }
+};
 // Interaction
 start.addEventListener("click", () => {
   start.classList.add("start--no-display");
   gameContainer.classList.remove("game-container--no-display");
-  grid = [
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-  ];
-  updateGrid(true);
+  newGameButton.classList.remove("header__new-game-button--no-display");
+  newGame();
 });
 
-// winContainerButtons.forEach(button => {
-//   button.addEventListener("click", checkWinButton)
-// })
+winContainerButtons.forEach((button) => {
+  button.addEventListener("click", checkWinButton);
+});
+
+newGameButton.addEventListener("click", newGame);
 
 document.addEventListener("keydown", checkKey);

@@ -11,9 +11,14 @@
     <div class="container">
         <header class="header">
             <h1 class="header__title">2048</h1>
-            <div class="header__score-container">
-                <h2 class="header__score-title">Score:</h2>
-                <p class="header__score">0</p>
+            <div class="header__right-container">
+                <div class="header__new-game-button header__new-game-button--no-display">
+                    <p class="header__new-game-text">New Game</p>
+                </div>
+                <div class="header__score-container">
+                    <p class="header__score-title">Score:</h2>
+                    <p class="header__score">0</p>
+                </div>
             </div>
         </header>
         <p class="start">Start Game</p>
@@ -43,12 +48,12 @@
     </div>
     <div class="modal modal--no-display">
         <div class="modal__win-container">
-            <h2 class="win-container__header">You win!</h2>
+            <h2 class="win-container__header"></h2>
             <p class="win-container__text"></p>
             <hr>
-            <p class="win-container__continue-text">Would you like to continue?</p>
+            <p class="win-container__continue-text"></p>
             <div class="win-container__responses">
-                <button class="win-container__buttons">Yes</button>
+                <button class="win-container__buttons win-container__yes-button">Yes</button>
                 <button class="win-container__buttons">New Game</button>
             </div>
         </div>

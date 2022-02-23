@@ -11,20 +11,39 @@ body {
         color: $tileEmpty-color;
         letter-spacing: 0.2ch;
       }
+      .header__right-container {
+        font-size: $score-font-smaller;
 
-      .header__score-container {
-        padding: $smallest-padding;
-        background-color: $accent-colour;
-        border-radius: $small-padding;
-        width: $small-tile-width;
+        .header__new-game-button {
+          padding: $smallest-padding;
+          background-color: $grid-colour;
+          border-radius: $small-padding;
+          width: $small-tile-width;
+          color: $tileEmpty-color;
 
-        .header__score-title {
-          font-size: $score-font-smaller;
-          text-align: center;
+          .header__new-game-text {
+            text-align: center;
+          }
         }
-        .header__score {
-          text-align: center;
-          font-weight: bold;
+
+        .header__new-game-button:hover {
+          cursor: pointer;
+        }
+
+        .header__score-container {
+          padding: $smallest-padding;
+          background-color: $accent-colour;
+          border-radius: $small-padding;
+          width: $small-tile-width;
+  
+          .header__score-title {
+            font-size: $score-font-smaller;
+            text-align: center;
+          }
+          .header__score {
+            text-align: center;
+            font-weight: bold;
+          }
         }
       }
     }
@@ -141,11 +160,15 @@ body {
       text-align: center;
       width: 20rem;
 
+      .win-container__header {
+        margin-bottom: 20px;
+      }
+
       hr {
         height: 1px;
         background-color: black;
         border: none;
-        margin: $gap 0;
+        margin: 20px 0;
       }
 
       .win-container__continue-text {
@@ -178,6 +201,24 @@ body {
 @media screen and (min-width: 520px) {
   body {
     .container {
+      .header {
+        .header__right-container {
+          font-size: $small-tile-font;
+          gap: $big-gap;
+  
+          .header__new-game-button {
+            width: $big-tile-width;
+          }
+  
+          .header__score-container {
+            width: $big-tile-width;
+    
+            .header__score-title {
+              font-size: $small-tile-font;
+            }
+          }
+        }
+      }
       .game-container {
         .game-container__tile {
           font-size: $big-tile-font;
