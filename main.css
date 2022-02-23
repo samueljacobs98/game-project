@@ -49,6 +49,9 @@ body .container .how-to-container .how-to-container__close-rules {
   right: 0;
   margin: 8px;
 }
+body .container .how-to-container--no-display {
+  display: none;
+}
 body .container .game-container {
   width: 280px;
   height: 280px;

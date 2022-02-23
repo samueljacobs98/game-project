@@ -13,7 +13,8 @@ const winScore = document.querySelector(".win-container__text")
 const header = document.querySelector(".win-container__header")
 const continueText = document.querySelector(".win-container__continue-text")
 const yesButton = document.querySelector(".win-container__yes-button")
-
+const howTo = document.querySelector(".how-to-container")
+const closehowTo = document.querySelector(".how-to-container__close-rules")
 
 let scoreCount;
 let grid;
@@ -332,3 +333,7 @@ winContainerButtons.forEach((button) => {
 newGameButton.addEventListener("click", newGame);
 
 document.addEventListener("keydown", checkKey);
+closehowTo.addEventListener("click", function(){
+  howTo.classList.add("how-to-container--no-display")
+  // console.log("working")
+})

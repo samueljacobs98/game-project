@@ -53,6 +53,10 @@ body {
       }
     }
 
+    .how-to-container--no-display {
+      display: none;
+    }
+
     .game-container {
       width: $small-game-container-width;
       height: $small-game-container-width;
@@ -77,11 +81,11 @@ body {
       margin-top: $big-gap;
       padding: $gap;
 
-      .footer__arrow-container {
-      }
-      // .footer__arrow-container--no-display {
-      //   display: none;
-      // }
+    //   .footer__arrow-container {
+    //   }
+    //   // .footer__arrow-container--no-display {
+    //   //   display: none;
+    //   // }
     }
   }
 
