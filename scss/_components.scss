@@ -69,28 +69,6 @@ body {
       display: none;
     }
 
-    .game-over {
-      background-color: $accent-colour;
-      color: $background-colour;
-      padding: $small-padding $padding;
-      border-radius: $smallest-padding;
-      border: 4px solid #444444;
-      box-shadow: 5px 5px 5px;
-      text-align: center;
-
-      .game-over__text {
-        font-size: $big-tile-font-smaller;
-        padding: $smallest-padding;
-      }
-      .game-over__score {
-        font-size: $small-tile-font-smaller;
-      }
-    }
-
-    .game-over--no-display {
-      display: none;
-    }
-
     .game-container {
       background-color: $grid-colour;
       border-radius: 6px;

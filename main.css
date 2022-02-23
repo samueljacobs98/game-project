@@ -150,25 +150,6 @@ body .container .start:hover {
 body .container .start--no-display, body .container .win-container--no-display {
   display: none;
 }
-body .container .game-over {
-  background-color: #8FBFE0;
-  color: #3D5467;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  border: 4px solid #444444;
-  box-shadow: 5px 5px 5px;
-  text-align: center;
-}
-body .container .game-over .game-over__text {
-  font-size: 2rem;
-  padding: 5px;
-}
-body .container .game-over .game-over__score {
-  font-size: 1.2rem;
-}
-body .container .game-over--no-display {
-  display: none;
-}
 body .container .game-container {
   background-color: #8B7E7E;
   border-radius: 6px;
