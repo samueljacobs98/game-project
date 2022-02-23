@@ -26,12 +26,20 @@ body {
 
       .header__right-container {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "ng start";
         align-items: center;
         gap: $gap;
 
+        .header__new-game-button {
+          grid-area: "ng";
+        }
+
         .header__new-game-button--no-display {
           display: none;
+        }
+
+        .header__score-container {
+          grid-area: "start";
         }
       }
     }
@@ -52,6 +60,15 @@ body {
         line-height: $small-tile-width;
 
         border-radius: 3px;
+      }
+    }
+
+    .footer {
+      .footer__game-rules {
+        margin: 0 auto;
+        margin-top: $big-gap;
+        padding: $gap;
+        color: $tileEmpty-color
       }
     }
   }
