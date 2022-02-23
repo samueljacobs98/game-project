@@ -9,12 +9,13 @@ const winContainerButtons = document.querySelectorAll(
   ".win-container__buttons"
 );
 const modal = document.querySelector(".modal");
-const winScore = document.querySelector(".win-container__text")
-const header = document.querySelector(".win-container__header")
-const continueText = document.querySelector(".win-container__continue-text")
-const yesButton = document.querySelector(".win-container__yes-button")
-const howTo = document.querySelector(".how-to-container")
-const closehowTo = document.querySelector(".how-to-container__close-rules")
+const winScore = document.querySelector(".win-container__text");
+const header = document.querySelector(".win-container__header");
+const continueText = document.querySelector(".win-container__continue-text");
+const yesButton = document.querySelector(".win-container__yes-button");
+const howTo = document.querySelector(".how-to-container");
+const closehowTo = document.querySelector(".how-to-container__close-rules");
+const arrowButtons = document.querySelectorAll(".arrow");
 
 let scoreCount;
 let grid;
@@ -71,14 +72,13 @@ const checkGameOver = (checkGrid) => {
 };
 
 const gameOverModal = () => {
-  header.innerText = "Game Over!"
-  continueText.innerText = "Play again?"
-}
+  header.innerText = "Game Over!";
+  continueText.innerText = "Play again?";
+};
 
 const gameOver = () => {
-  // console.log("game over");
-  printModal()
-  gameOverModal()
+  printModal();
+  gameOverModal();
 };
 
 const checkKey = (event) => {
@@ -86,21 +86,28 @@ const checkKey = (event) => {
   if (checkGameOver(previousGrid)) {
     gameOver();
     return;
+  }
+
+  let key;
+  if (event.code === undefined) {
+    key = event.target.classList[1];
   } else {
-    switch (event.code) {
-      case "ArrowUp":
-        moveUp();
-        break;
-      case "ArrowDown":
-        moveDown();
-        break;
-      case "ArrowRight":
-        moveRight();
-        break;
-      case "ArrowLeft":
-        moveLeft();
-        break;
-    }
+    key = event.code;
+  }
+
+  switch (key) {
+    case "ArrowUp":
+      moveUp();
+      break;
+    case "ArrowDown":
+      moveDown();
+      break;
+    case "ArrowRight":
+      moveRight();
+      break;
+    case "ArrowLeft":
+      moveLeft();
+      break;
   }
 };
 
@@ -254,24 +261,24 @@ const checkForNumber = (numberToCheck) => {
 const defaultModal = () => {
   header.innerText = "";
   continueText.innerText = "";
-  yesButton.classList.add("win-container__yes-button--hide")
-}
+  yesButton.classList.add("win-container__yes-button--hide");
+};
 
 const printModal = () => {
   defaultModal();
   modal.classList.remove("modal--no-display");
-  winScore.innerText = `Your score: ${scoreCount}`
+  winScore.innerText = `Your score: ${scoreCount}`;
 };
 
 const youWinModal = () => {
-  header.innerText = "You win!"
-  continueText.innerText = "Would you like to continue?"
-  yesButton.classList.remove("win-container__yes-button--hide")
-}
+  header.innerText = "You win!";
+  continueText.innerText = "Would you like to continue?";
+  yesButton.classList.remove("win-container__yes-button--hide");
+};
 
 const youWin = () => {
   printModal();
-  youWinModal()
+  youWinModal();
   reach2048 = true;
 };
 
@@ -299,7 +306,7 @@ const updateGrid = (start) => {
     }
   }
 
-  if (checkForNumber(8) && !reach2048) {
+  if (checkForNumber(2048) && !reach2048) {
     youWin();
   }
 };
@@ -333,7 +340,10 @@ winContainerButtons.forEach((button) => {
 newGameButton.addEventListener("click", newGame);
 
 document.addEventListener("keydown", checkKey);
-closehowTo.addEventListener("click", function(){
-  howTo.classList.add("how-to-container--no-display")
-  // console.log("working")
-})
+arrowButtons.forEach((button) => {
+  button.addEventListener("click", checkKey);
+});
+
+closehowTo.addEventListener("click", function () {
+  howTo.classList.add("how-to-container--no-display");
+});

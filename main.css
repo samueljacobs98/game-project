@@ -71,6 +71,30 @@ body .container .footer {
   margin-top: 16px;
   padding: 8px;
 }
+body .container .footer .footer__arrow-container {
+  margin: 0 auto;
+  display: none;
+  width: 180px;
+  grid-template-areas: ". u ." "l . r" ". d .";
+}
+body .container .footer .footer__arrow-container .arrow {
+  width: 50px;
+}
+body .container .footer .footer__arrow-container .ArrowUp {
+  grid-area: u;
+}
+body .container .footer .footer__arrow-container .ArrowLeft {
+  grid-area: l;
+}
+body .container .footer .footer__arrow-container .ArrowRight {
+  grid-area: r;
+}
+body .container .footer .footer__arrow-container .ArrowDown {
+  grid-area: d;
+}
+body .container .footer .footer__arrow-container--no-display {
+  display: none;
+}
 body .modal {
   position: fixed;
   top: 0;
@@ -112,6 +136,11 @@ body .modal--no-display {
     min-height: 107px;
     min-width: 107px;
     line-height: 107px;
+  }
+}
+@media (pointer: coarse) {
+  body .container .footer .footer__arrow-container {
+    display: grid;
   }
 }
 body {
@@ -171,7 +200,8 @@ body .container .start {
 body .container .start:hover {
   cursor: pointer;
 }
-body .container .start--no-display, body .container .win-container--no-display {
+body .container .start--no-display,
+body .container .win-container--no-display {
   display: none;
 }
 body .container .how-to-container {
@@ -229,6 +259,10 @@ body .container .game-container .game-container__tile--2048 {
 }
 body .container .game-container--no-display {
   display: none;
+}
+body .container .footer .footer__arrow-container .arrow {
+  background-color: #8FBFE0;
+  border-radius: 8px;
 }
 body .modal {
   background-color: rgba(170, 178, 255, 0.7);

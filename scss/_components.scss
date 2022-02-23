@@ -35,7 +35,7 @@ body {
           background-color: $accent-colour;
           border-radius: $small-padding;
           width: $small-tile-width;
-  
+
           .header__score-title {
             font-size: $score-font-smaller;
             text-align: center;
@@ -48,7 +48,7 @@ body {
       }
     }
 
-    .start{
+    .start {
       background-color: $accent-colour;
       color: $background-colour;
       font-size: 2rem;
@@ -65,7 +65,8 @@ body {
       cursor: pointer;
     }
 
-    .start--no-display, .win-container--no-display {
+    .start--no-display,
+    .win-container--no-display {
       display: none;
     }
 
@@ -131,6 +132,15 @@ body {
     .game-container--no-display {
       display: none;
     }
+
+    .footer {
+      .footer__arrow-container {
+        .arrow {
+          background-color: $accent-colour;
+          border-radius: 8px;
+        }
+      }
+    }
   }
 
   .modal {
@@ -164,18 +174,18 @@ body {
       .win-container__responses {
         margin-top: $gap;
 
-       .win-container__buttons {
-         font-family: $font;
-         font-size: $small-tile-font-smaller;
-         padding: 4px;
-         border: 2px solid #444444;
-         border-radius: 5px;
-         background-color: $modal-button;
-       }
+        .win-container__buttons {
+          font-family: $font;
+          font-size: $small-tile-font-smaller;
+          padding: 4px;
+          border: 2px solid #444444;
+          border-radius: 5px;
+          background-color: $modal-button;
+        }
 
-       .win-container__buttons:hover {
-         cursor: pointer;
-       }
+        .win-container__buttons:hover {
+          cursor: pointer;
+        }
       }
     }
   }
@@ -188,14 +198,14 @@ body {
         .header__right-container {
           font-size: $small-tile-font;
           gap: $big-gap;
-  
+
           .header__new-game-button {
             width: $big-tile-width;
           }
-  
+
           .header__score-container {
             width: $big-tile-width;
-    
+
             .header__score-title {
               font-size: $small-tile-font;
             }
@@ -219,7 +229,7 @@ body {
       .modal__win-container {
         font-size: 2rem;
         padding: 16px;
-       width: 20rem;
+        width: 20rem;
       }
     }
   }
