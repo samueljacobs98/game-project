@@ -69,6 +69,14 @@ body {
       display: none;
     }
 
+    .how-to-container {
+      background-color: $modal-background;
+      padding: $gap;
+      .how-to-container__game-rules {
+        width: 95%;
+      }
+    }
+
     .game-container {
       background-color: $grid-colour;
       border-radius: 6px;

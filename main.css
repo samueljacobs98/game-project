@@ -39,6 +39,16 @@ body .container .header .header__right-container .header__new-game-button--no-di
 body .container .header .header__right-container .header__score-container {
   grid-area: "start";
 }
+body .container .how-to-container {
+  position: relative;
+  margin: 8px auto;
+}
+body .container .how-to-container .how-to-container__close-rules {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 8px;
+}
 body .container .game-container {
   width: 280px;
   height: 280px;
@@ -53,11 +63,10 @@ body .container .game-container .game-container__tile {
   line-height: 58px;
   border-radius: 3px;
 }
-body .container .footer .footer__game-rules {
+body .container .footer {
   margin: 0 auto;
   margin-top: 16px;
   padding: 8px;
-  color: #c4c4c4;
 }
 body .modal {
   position: fixed;
@@ -161,6 +170,13 @@ body .container .start:hover {
 }
 body .container .start--no-display, body .container .win-container--no-display {
   display: none;
+}
+body .container .how-to-container {
+  background-color: rgba(170, 178, 255, 0.7);
+  padding: 8px;
+}
+body .container .how-to-container .how-to-container__game-rules {
+  width: 95%;
 }
 body .container .game-container {
   background-color: #8B7E7E;

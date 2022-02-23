@@ -10,10 +10,7 @@
 <body>
     <div class="container">
         <header class="header">
-            <div class="header__left-container">
                 <h1 class="header__title">2048</h1>
-                <p class="header__how-to-link"><a href="#how-to">How to play</a></p>
-            </div>
             <div class="header__right-container">
                 <div class="header__new-game-button header__new-game-button--no-display">
                     <p class="header__new-game-text">New Game</p>
@@ -24,6 +21,13 @@
                 </div>
             </div>
         </header>
+        <div class="how-to-container">
+            <p class="how-to-container__game-rules">Use the arrow keys to move the tiles. 
+                Tiles with the same number <b>merge into one</b> when they touch.
+                Add them up to reach <b>2048!</b>
+            </p>
+            <img src="./assets/svgs/cross.svg" alt="" srcset="" class="how-to-container__close-rules">
+        </div>
         <p class="start">Start Game</p>
         <div class="game-container game-container--no-display">
             <div class="game-container__tile"></div>
@@ -45,10 +49,7 @@
         </div>
         <footer class="footer">
             <div class="footer__arrow-container footer__arrow-container--no-display"></div>
-            <p class="footer__game-rules" id="how-to">Use the arrow keys to move the tiles. 
-                Tiles with the same number <b>merge into one</b> when they touch.
-                Add them up to reach <b>2048!</b>
-            </p>
+
         </footer>
     </div>
     <div class="modal modal--no-display">
