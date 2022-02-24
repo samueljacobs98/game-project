@@ -47,9 +47,7 @@ const getGrid = () => {
 const rowsGameMayEnd = (checkGrid) => {
   for (let i = 0; i < checkGrid.length; i++) {
     for (let j = 0; j < checkGrid[i].length - 1; j++) {
-      if (checkGrid[i][j] === checkGrid[i][j + 1]) {
-        return false;
-      }
+      if (checkGrid[i][j] === checkGrid[i][j + 1]) return false;
     }
   }
   return true;
@@ -63,9 +61,7 @@ const columnsGameMayEnd = (checkGrid) => {
 const checkGameOver = (checkGrid) => {
   if (!checkForNumber(0)) {
     if (rowsGameMayEnd(checkGrid)) {
-      if (columnsGameMayEnd(checkGrid)) {
-        return true;
-      }
+      if (columnsGameMayEnd(checkGrid)) return true;
     }
   }
   return false;
@@ -163,11 +159,7 @@ const getSquareArray = (nonZeroArray, start) => {
   for (let i = 0; i < nonZeroArray.length; i++) {
     const count = 4 - nonZeroArray[i].length;
     for (let j = 0; j < count; j++) {
-      if (start) {
-        nonZeroArray[i].push(0);
-      } else {
-        nonZeroArray[i].unshift(0);
-      }
+      start ? nonZeroArray[i].push(0) : nonZeroArray[i].unshift(0);
     }
   }
   return nonZeroArray;
@@ -181,24 +173,18 @@ const checkForUpdate = (currentGrid) => {
   }
 };
 
-const move = (transpose, fromStart) => {
-  let alignedArray;
+const chooseArray = (boolean, array) => {
+  return (boolean ? transpose2DArray(array) : [...array])
+}
 
-  if (transpose) {
-    alignedArray = transpose2DArray(previousGrid);
-  } else {
-    alignedArray = [...previousGrid];
-  }
+const move = (transpose, fromStart) => {
+  const alignedArray = chooseArray(transpose, previousGrid)
 
   let nonZeroArray = getNonZeroArray(alignedArray);
   let condensedArray = mergeSameNumbers(nonZeroArray, fromStart);
   let squareArray = getSquareArray(condensedArray, fromStart);
 
-  if (transpose) {
-    finalArray = transpose2DArray(squareArray);
-  } else {
-    finalArray = [...squareArray];
-  }
+  const finalArray = chooseArray(transpose, squareArray)
 
   return finalArray;
 };
