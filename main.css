@@ -219,6 +219,9 @@ body .container .how-to-container {
 body .container .how-to-container .how-to-container__game-rules {
   width: 95%;
 }
+body .container .how-to-container .how-to-container__close-rules:hover {
+  cursor: pointer;
+}
 body .container .game-container {
   background-color: #8B7E7E;
   border-radius: 6px;

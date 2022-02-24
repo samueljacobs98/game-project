@@ -77,6 +77,9 @@ body {
       .how-to-container__game-rules {
         width: 95%;
       }
+      .how-to-container__close-rules:hover {
+        cursor: pointer;
+      }
     }
 
     .game-container {
