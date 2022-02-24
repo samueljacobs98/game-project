@@ -218,11 +218,7 @@ const moveLeft = () => {
 
 const newNumber = () => {
   const randomNumber = Math.random();
-  if (randomNumber < 0.7) {
-    return 2;
-  } else {
-    return 4;
-  }
+  return ((randomNumber > 0.7) ? 2 : 4)
 };
 
 const randomLocation = () => {
@@ -251,9 +247,7 @@ const checkForNumber = (numberToCheck) => {
   let check = false;
   for (i = 0; i < grid.length; i++) {
     check = grid[i].includes(numberToCheck);
-    if (check === true) {
-      break;
-    }
+    if (check === true) break;
   }
   return check;
 };
@@ -321,9 +315,7 @@ const newGame = () => {
 const checkWinButton = (button) => {
   const response = button.target.innerText;
   modal.classList.add("modal--no-display");
-  if (response === "New Game") {
-    newGame();
-  }
+  if (response === "New Game") newGame();
 };
 // Interaction
 start.addEventListener("click", () => {
