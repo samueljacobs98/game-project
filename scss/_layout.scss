@@ -24,7 +24,7 @@ body {
 
       .header__right-container {
         display: grid;
-        grid-template-areas: "ng start";
+        grid-template-areas: "ng score";
         align-items: center;
         gap: $gap;
 
@@ -37,7 +37,7 @@ body {
         }
 
         .header__score-container {
-          grid-area: "start";
+          grid-area: "score";
         }
       }
     }
@@ -111,6 +111,14 @@ body {
       .footer__arrow-container--no-display {
         display: none;
       }
+    }
+
+    .background-music__container {
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
   }
 

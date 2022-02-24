@@ -174,17 +174,17 @@ const checkForUpdate = (currentGrid) => {
 };
 
 const chooseArray = (boolean, array) => {
-  return (boolean ? transpose2DArray(array) : [...array])
-}
+  return boolean ? transpose2DArray(array) : [...array];
+};
 
 const move = (transpose, fromStart) => {
-  const alignedArray = chooseArray(transpose, previousGrid)
+  const alignedArray = chooseArray(transpose, previousGrid);
 
   let nonZeroArray = getNonZeroArray(alignedArray);
   let condensedArray = mergeSameNumbers(nonZeroArray, fromStart);
   let squareArray = getSquareArray(condensedArray, fromStart);
 
-  const finalArray = chooseArray(transpose, squareArray)
+  const finalArray = chooseArray(transpose, squareArray);
 
   return finalArray;
 };
@@ -204,7 +204,7 @@ const moveLeft = () => {
 
 const newNumber = () => {
   const randomNumber = Math.random();
-  return ((randomNumber > 0.7) ? 2 : 4)
+  return randomNumber > 0.7 ? 2 : 4;
 };
 
 const randomLocation = () => {
@@ -218,11 +218,9 @@ const randomLocation = () => {
 const addNumber = () => {
   const randomNewLocation = randomLocation();
   const randomNewNumber = newNumber();
-  if (grid[randomNewLocation[0]][randomNewLocation[1]] !== 0) {
-    addNumber();
-  } else {
-    grid[randomNewLocation[0]][randomNewLocation[1]] = randomNewNumber;
-  }
+  grid[randomNewLocation[0]][randomNewLocation[1]] !== 0
+    ? addNumber()
+    : (grid[randomNewLocation[0]][randomNewLocation[1]] = randomNewNumber);
 };
 
 const updateScore = () => {
@@ -264,31 +262,24 @@ const youWin = () => {
 
 const updateGrid = (start) => {
   start = start || false;
-  if (start === true) {
-    addNumber();
-  }
+  if (start === true) addNumber();
   addNumber();
   updateScore();
 
-  for (div in gameContainer.children) {
-    gameContainer.children.item(div).className = "game-container__tile";
-    gameContainer.children.item(div).innerText = "";
-  }
+  tiles.forEach((tile, index) => {
+    const row = Math.floor(index / 4)
+    const col = Math.floor(index % 4)
 
-  for (let i = 0; i < grid.length; i++) {
-    for (let j = 0; j < grid[i].length; j++) {
-      if (grid[i][j] !== 0) {
-        gameContainer.children.item(i * 4 + j).innerText = grid[i][j];
-        gameContainer.children
-          .item(i * 4 + j)
-          .classList.add(`game-container__tile--${grid[i][j]}`);
-      }
+    tile.className = "game-container__tile";
+    tile.innerText = "";
+
+    if (grid[row][col] !== 0) {
+      tile.innerText = grid[row][col]
+      tile.classList.add(`game-container__tile--${grid[row][col]}`)
     }
-  }
+  })
 
-  if (checkForNumber(2048) && !reach2048) {
-    youWin();
-  }
+  if (checkForNumber(2048) && !reach2048) youWin()
 };
 
 const newGame = () => {

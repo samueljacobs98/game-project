@@ -59,6 +59,7 @@ body {
       text-align: center;
       width: 14rem;
       margin: 0 auto;
+      margin-top: 24px;
     }
 
     .start:hover {
@@ -138,6 +139,20 @@ body {
         .arrow {
           background-color: $accent-colour;
           border-radius: 8px;
+        }
+      }
+    }
+
+    .background-music__container {
+      .background-music__audio {
+        margin-bottom: 10px;
+      }
+      .background-music__desc {
+        color: $tileEmpty-color;
+
+        a {
+          color: inherit;
+          font-weight: bold;
         }
       }
     }

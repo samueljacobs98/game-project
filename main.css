@@ -26,7 +26,7 @@ body .container .header .header__title {
 }
 body .container .header .header__right-container {
   display: grid;
-  grid-template-areas: "ng start";
+  grid-template-areas: "ng score";
   align-items: center;
   gap: 8px;
 }
@@ -37,7 +37,7 @@ body .container .header .header__right-container .header__new-game-button--no-di
   display: none;
 }
 body .container .header .header__right-container .header__score-container {
-  grid-area: "start";
+  grid-area: "score";
 }
 body .container .how-to-container {
   position: relative;
@@ -94,6 +94,13 @@ body .container .footer .footer__arrow-container .ArrowDown {
 }
 body .container .footer .footer__arrow-container--no-display {
   display: none;
+}
+body .container .background-music__container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 body .modal {
   position: fixed;
@@ -196,6 +203,7 @@ body .container .start {
   text-align: center;
   width: 14rem;
   margin: 0 auto;
+  margin-top: 24px;
 }
 body .container .start:hover {
   cursor: pointer;
@@ -263,6 +271,16 @@ body .container .game-container--no-display {
 body .container .footer .footer__arrow-container .arrow {
   background-color: #8FBFE0;
   border-radius: 8px;
+}
+body .container .background-music__container .background-music__audio {
+  margin-bottom: 10px;
+}
+body .container .background-music__container .background-music__desc {
+  color: #c4c4c4;
+}
+body .container .background-music__container .background-music__desc a {
+  color: inherit;
+  font-weight: bold;
 }
 body .modal {
   background-color: rgba(170, 178, 255, 0.7);
