@@ -279,7 +279,7 @@ const updateGrid = (start) => {
     }
   })
 
-  if (checkForNumber(2048) && !reach2048) youWin()
+  if (checkForNumber(8) && !reach2048) youWin()
 };
 
 const newGame = () => {
