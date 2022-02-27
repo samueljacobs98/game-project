@@ -1,6 +1,6 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,900&display=swap');
-$font: 'Roboto', sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,900&display=swap");
+$font: "Roboto", sans-serif;
 
 // Fonts sizing
 $score-font-smaller: 0.75rem;
@@ -12,24 +12,25 @@ $small-header-font: 3rem;
 
 // Colours
 $tileEmpty-color: #c4c4c4;
-$tile2-colour: #84FFC9;
-$tile4-colour: #87F8CE;
-$tile8-colour: #8BF1D3;
-$tile16-colour: #8EEAD8;
-$tile32-colour: #92E3DD;
-$tile64-colour: #95DCE2;
-$tile128-colour: #9CCEEB;
-$tile256-colour: #A0C7F0;
-$tile512-colour: #A3C0F5;
-$tile1024-colour: #A7B9FA;
-$tile2048-colour: #AAB2FF;
+$tile2-colour: #84ffc9;
+$tile4-colour: #87f8ce;
+$tile8-colour: #8bf1d3;
+$tile16-colour: #8eead8;
+$tile32-colour: #92e3dd;
+$tile64-colour: #95dce2;
+$tile128-colour: #9cceeb;
+$tile256-colour: #a0c7f0;
+$tile512-colour: #a3c0f5;
+$tile1024-colour: #a7b9fa;
+$tile2048-colour: #aab2ff;
 
-$grid-colour: #8B7E7E;
-$accent-colour: #8FBFE0;
-$background-colour: #3D5467;
+$grid-colour: #8b7e7e;
+$accent-colour: #8fbfe0;
+$background-colour: #3d5467;
 
 $modal-background: rgba(170, 178, 255, 0.7);
-$modal-button: #84FFC9;
+$overlay: rgba(170, 178, 255, 0.3);
+$modal-button: #84ffc9;
 
 // Widths and Heights
 $small-container-width: 288px;

@@ -78,7 +78,6 @@ body {
 
     .footer {
       margin: 0 auto;
-      margin-top: $big-gap;
       padding: $gap;
 
       .footer__arrow-container {
@@ -110,6 +109,13 @@ body {
       }
       .footer__arrow-container--no-display {
         display: none;
+      }
+
+      .footer__scoreboard-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
       }
     }
 

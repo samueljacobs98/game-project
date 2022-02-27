@@ -5,6 +5,7 @@ const tiles = document.querySelectorAll(".game-container__tile");
 const gameEnd = document.querySelector(".game-over");
 const score = document.querySelector(".header__score");
 const newGameButton = document.querySelector(".header__new-game-button");
+// Modal
 const winContainerButtons = document.querySelectorAll(
   ".win-container__buttons"
 );
@@ -13,9 +14,16 @@ const winScore = document.querySelector(".win-container__text");
 const header = document.querySelector(".win-container__header");
 const continueText = document.querySelector(".win-container__continue-text");
 const yesButton = document.querySelector(".win-container__yes-button");
+// How to interaction
 const howTo = document.querySelector(".how-to-container");
 const closehowTo = document.querySelector(".how-to-container__close-rules");
+// Mobile control
 const arrowButtons = document.querySelectorAll(".arrow");
+// Scoreboard
+const scoreboardToggleBtn = document.querySelector(
+  ".scoreboard-container__toggle"
+);
+const scoreboard = document.querySelector(".scoreboard-container__scoreboard");
 
 let scoreCount;
 let grid;
@@ -75,11 +83,14 @@ const gameOverModal = () => {
 const gameOver = () => {
   printModal();
   gameOverModal();
+  checkLocalStorage();
 };
 
 const checkKey = (event) => {
   previousGrid = getGrid();
   if (checkGameOver(previousGrid)) {
+    // save current score to local storage
+    localStorage.setItem(`score${localStorage.length + 1}`, `${scoreCount}`);
     gameOver();
     return;
   }
@@ -267,19 +278,19 @@ const updateGrid = (start) => {
   updateScore();
 
   tiles.forEach((tile, index) => {
-    const row = Math.floor(index / 4)
-    const col = Math.floor(index % 4)
+    const row = Math.floor(index / 4);
+    const col = Math.floor(index % 4);
 
     tile.className = "game-container__tile";
     tile.innerText = "";
 
     if (grid[row][col] !== 0) {
-      tile.innerText = grid[row][col]
-      tile.classList.add(`game-container__tile--${grid[row][col]}`)
+      tile.innerText = grid[row][col];
+      tile.classList.add(`game-container__tile--${grid[row][col]}`);
     }
-  })
+  });
 
-  if (checkForNumber(2048) && !reach2048) youWin()
+  if (checkForNumber(2048) && !reach2048) youWin();
 };
 
 const newGame = () => {
@@ -294,7 +305,44 @@ const checkWinButton = (button) => {
   modal.classList.add("modal--no-display");
   if (response === "New Game") newGame();
 };
+
+const scoreboardToggle = () => {
+  scoreboard.classList.toggle("scoreboard-container__scoreboard--inactive");
+};
+
+const getScores = () => {
+  const scoresArr = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const score = localStorage[`score${i + 1}`];
+    scoresArr.push(score);
+  }
+  reducedScoresArr = [...new Set(scoresArr)].sort(function (a, b) {
+    return b - a;
+  });
+  return scoresArr;
+};
+
+const printScoreboard = (scoresArr) => {
+  scoreboard.innerHTML = ""
+  scoresArr.forEach((score, index) => {
+    scoreboard.innerHTML += `<p class="scoreboard-container__score">${
+      index + 1
+    }. ${score}</p>`;
+  });
+};
+
+const checkLocalStorage = () => {
+  if (localStorage.length !== 0) {
+    const scoresArr = getScores();
+    printScoreboard(reducedScoresArr);
+  } else {
+    scoreboard.innerHTML +=
+      '<p class="footer__scoreboard-empty">Start playing to add a score!</p>';
+  }
+};
 // Interaction
+window.onload = checkLocalStorage;
+
 start.addEventListener("click", () => {
   start.classList.add("start--no-display");
   gameContainer.classList.remove("game-container--no-display");
@@ -316,3 +364,5 @@ arrowButtons.forEach((button) => {
 closehowTo.addEventListener("click", function () {
   howTo.classList.add("how-to-container--no-display");
 });
+
+scoreboardToggleBtn.addEventListener("click", scoreboardToggle);
