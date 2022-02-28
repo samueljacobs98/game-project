@@ -1,0 +1,27 @@
+@use "../variables" as *;
+
+body {
+  .container {
+    .start {
+      background-color: $accent-colour;
+      color: $background-colour;
+      font-size: 2rem;
+      padding: 8px 16px;
+      border-radius: 5px;
+      border: 4px solid #444444;
+      box-shadow: 5px 5px 5px 0;
+      text-align: center;
+      width: 14rem;
+      margin: 1.5rem auto;
+    }
+
+    .start:hover {
+      cursor: pointer;
+    }
+
+    .start--no-display,
+    .win-container--no-display {
+      display: none;
+    }
+  }
+}

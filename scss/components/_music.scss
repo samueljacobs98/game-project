@@ -1,0 +1,17 @@
+@use "../variables" as *;
+
+body {
+  .container {
+    .background-music__container {
+      .background-music__desc {
+        margin: 1rem 0;
+        color: $tileEmpty-color;
+
+        a {
+          color: inherit;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

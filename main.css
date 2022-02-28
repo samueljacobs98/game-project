@@ -160,6 +160,7 @@ body {
   font-family: "Roboto", sans-serif;
   background-color: #3d5467;
 }
+
 body .container .header {
   padding-bottom: 1rem;
 }
@@ -198,6 +199,22 @@ body .container .header .header__right-container .header__score-container .heade
   text-align: center;
   font-weight: bold;
 }
+
+@media screen and (min-width: 520px) {
+  body .container .header .header__right-container {
+    font-size: 1.5rem;
+    gap: 16px;
+  }
+  body .container .header .header__right-container .header__new-game-button {
+    width: 107px;
+  }
+  body .container .header .header__right-container .header__score-container {
+    width: 107px;
+  }
+  body .container .header .header__right-container .header__score-container .header__score-title {
+    font-size: 1.5rem;
+  }
+}
 body .container .start {
   background-color: #8fbfe0;
   color: #3d5467;
@@ -217,6 +234,7 @@ body .container .start--no-display,
 body .container .win-container--no-display {
   display: none;
 }
+
 body .container .how-to-container {
   background-color: rgba(170, 178, 255, 0.7);
   padding: 8px;
@@ -227,6 +245,7 @@ body .container .how-to-container .how-to-container__game-rules {
 body .container .how-to-container .how-to-container__close-rules:hover {
   cursor: pointer;
 }
+
 body .container .game-container {
   background-color: #8b7e7e;
   border-radius: 6px;
@@ -277,6 +296,18 @@ body .container .game-container .game-container__tile--2048 {
 body .container .game-container--no-display {
   display: none;
 }
+
+@media screen and (min-width: 520px) {
+  body .container .game-container .game-container__tile {
+    font-size: 2.5rem;
+  }
+  body .container .game-container .game-container__tile--1024 {
+    font-size: 2rem;
+  }
+  body .container .game-container .game-container__tile--2048 {
+    font-size: 2rem;
+  }
+}
 body .container .footer .footer__arrow-container .arrow {
   background-color: #8fbfe0;
   border-radius: 8px;
@@ -317,6 +348,7 @@ body .container .footer .footer__scoreboard-container .scoreboard-container__sco
   padding: 0;
   max-height: 0;
 }
+
 body .container .background-music__container .background-music__desc {
   margin: 1rem 0;
   color: #c4c4c4;
@@ -325,6 +357,7 @@ body .container .background-music__container .background-music__desc a {
   color: inherit;
   font-weight: bold;
 }
+
 body .modal {
   background-color: rgba(170, 178, 255, 0.7);
 }
@@ -367,28 +400,6 @@ body .modal .modal__win-container .win-container__responses .win-container__butt
 }
 
 @media screen and (min-width: 520px) {
-  body .container .header .header__right-container {
-    font-size: 1.5rem;
-    gap: 16px;
-  }
-  body .container .header .header__right-container .header__new-game-button {
-    width: 107px;
-  }
-  body .container .header .header__right-container .header__score-container {
-    width: 107px;
-  }
-  body .container .header .header__right-container .header__score-container .header__score-title {
-    font-size: 1.5rem;
-  }
-  body .container .game-container .game-container__tile {
-    font-size: 2.5rem;
-  }
-  body .container .game-container .game-container__tile--1024 {
-    font-size: 2rem;
-  }
-  body .container .game-container .game-container__tile--2048 {
-    font-size: 2rem;
-  }
   body .modal .modal__win-container {
     font-size: 2rem;
     padding: 16px;

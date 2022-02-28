@@ -1,0 +1,74 @@
+@use "../variables" as *;
+
+body {
+  .container {
+    .header {
+      padding-bottom: $padding;
+      .header__title {
+        font-size: $small-header-font;
+        color: $tileEmpty-color;
+        letter-spacing: 0.2ch;
+      }
+      .header__right-container {
+        font-size: $score-font-smaller;
+
+        .header__new-game-button {
+          padding: $smallest-padding;
+          background-color: $grid-colour;
+          border-radius: $small-padding;
+          width: $small-tile-width;
+          color: $tileEmpty-color;
+
+          .header__new-game-text {
+            text-align: center;
+          }
+        }
+
+        .header__new-game-button:hover {
+          cursor: pointer;
+        }
+
+        .header__score-container {
+          padding: $smallest-padding;
+          background-color: $accent-colour;
+          border-radius: $small-padding;
+          width: $small-tile-width;
+
+          .header__score-title {
+            font-size: $score-font-smaller;
+            text-align: center;
+          }
+          .header__score {
+            text-align: center;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 520px) {
+  body {
+    .container {
+      .header {
+        .header__right-container {
+          font-size: $small-tile-font;
+          gap: $big-gap;
+
+          .header__new-game-button {
+            width: $big-tile-width;
+          }
+
+          .header__score-container {
+            width: $big-tile-width;
+
+            .header__score-title {
+              font-size: $small-tile-font;
+            }
+          }
+        }
+      }
+    }
+  }
+}

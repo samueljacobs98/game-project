@@ -1,0 +1,80 @@
+@use "../variables" as *;
+
+body {
+  .container {
+    .game-container {
+      background-color: $grid-colour;
+      border-radius: 6px;
+      margin: 1.5rem auto;
+
+      box-shadow: 5px 5px 12px;
+
+      .game-container__tile {
+        background-color: $tileEmpty-color;
+
+        font-size: $small-tile-font;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      .game-container__tile--2 {
+        background-color: $tile2-colour;
+      }
+      .game-container__tile--4 {
+        background-color: $tile4-colour;
+      }
+      .game-container__tile--8 {
+        background-color: $tile8-colour;
+      }
+      .game-container__tile--16 {
+        background-color: $tile16-colour;
+      }
+      .game-container__tile--32 {
+        background-color: $tile32-colour;
+      }
+      .game-container__tile--64 {
+        background-color: $tile64-colour;
+      }
+      .game-container__tile--128 {
+        background-color: $tile128-colour;
+      }
+      .game-container__tile--256 {
+        background-color: $tile256-colour;
+      }
+      .game-container__tile--512 {
+        background-color: $tile512-colour;
+      }
+      .game-container__tile--1024 {
+        background-color: $tile1024-colour;
+        font-size: $small-tile-font-smaller;
+      }
+      .game-container__tile--2048 {
+        background-color: $tile2048-colour;
+        font-size: $small-tile-font-smaller;
+      }
+    }
+
+    .game-container--no-display {
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width: 520px) {
+  body {
+    .container {
+      .game-container {
+        .game-container__tile {
+          font-size: $big-tile-font;
+        }
+
+        .game-container__tile--1024 {
+          font-size: $big-tile-font-smaller;
+        }
+        .game-container__tile--2048 {
+          font-size: $big-tile-font-smaller;
+        }
+      }
+    }
+  }
+}
