@@ -42,7 +42,6 @@ const initialiseGrid = () => {
 
 const getGrid = () => {
   let array = [[], [], [], []];
-  let i = 0;
 
   tiles.forEach((div, index) => {
     const arrayIndex = Math.floor(index / 4);
