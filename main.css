@@ -72,6 +72,7 @@ body .container .footer {
 }
 body .container .footer .footer__arrow-container {
   margin: 0 auto;
+  margin-bottom: 1rem;
   display: none;
   width: 180px;
   grid-template-areas: ". u ." "l . r" ". d .";

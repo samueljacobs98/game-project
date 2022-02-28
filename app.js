@@ -215,7 +215,7 @@ const moveLeft = () => {
 
 const newNumber = () => {
   const randomNumber = Math.random();
-  return randomNumber > 0.7 ? 2 : 4;
+  return randomNumber < 0.7 ? 2 : 4;
 };
 
 const randomLocation = () => {
@@ -323,7 +323,7 @@ const getScores = () => {
 };
 
 const printScoreboard = (scoresArr) => {
-  scoreboard.innerHTML = ""
+  scoreboard.innerHTML = "";
   scoresArr.forEach((score, index) => {
     scoreboard.innerHTML += `<p class="scoreboard-container__score">${
       index + 1
