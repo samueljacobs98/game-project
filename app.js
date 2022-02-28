@@ -87,11 +87,8 @@ const gameOver = () => {
 };
 
 const setKey = (event) => {
-  if (event.code === undefined) {
-    return event.target.classList[1];
-  } else {
-    return event.code;
-  }
+  const checker = event.code === undefined;
+  return checker ? event.target.classList[1] : event.code;
 };
 
 const checkKey = (key) => {
@@ -321,9 +318,7 @@ const getScores = () => {
     const score = localStorage[`score${i + 1}`];
     scoresArr.push(score);
   }
-  reducedScoresArr = [...new Set(scoresArr)].sort(function (a, b) {
-    return b - a;
-  });
+  reducedScoresArr = [...new Set(scoresArr)].sort((a, b) => b - a);
   return scoresArr;
 };
 
