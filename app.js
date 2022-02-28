@@ -86,22 +86,15 @@ const gameOver = () => {
   checkLocalStorage();
 };
 
-const checkKey = (event) => {
-  previousGrid = getGrid();
-  if (checkGameOver(previousGrid)) {
-    // save current score to local storage
-    localStorage.setItem(`score${localStorage.length + 1}`, `${scoreCount}`);
-    gameOver();
-    return;
-  }
-
-  let key;
+const setKey = (event) => {
   if (event.code === undefined) {
-    key = event.target.classList[1];
+    return event.target.classList[1];
   } else {
-    key = event.code;
+    return event.code;
   }
+};
 
+const checkKey = (key) => {
   switch (key) {
     case "ArrowUp":
       moveUp();
@@ -116,6 +109,18 @@ const checkKey = (event) => {
       moveLeft();
       break;
   }
+};
+
+const dealWithKeyPress = (event) => {
+  previousGrid = getGrid();
+  if (checkGameOver(previousGrid)) {
+    localStorage.setItem(`score${localStorage.length + 1}`, `${scoreCount}`);
+    gameOver();
+    return;
+  }
+
+  let key = setKey(event);
+  checkKey(key);
 };
 
 const transpose2DArray = (array) => {
@@ -356,12 +361,12 @@ winContainerButtons.forEach((button) => {
 
 newGameButton.addEventListener("click", newGame);
 
-document.addEventListener("keydown", checkKey);
+document.addEventListener("keydown", dealWithKeyPress);
 arrowButtons.forEach((button) => {
-  button.addEventListener("click", checkKey);
+  button.addEventListener("click", dealWithKeyPress);
 });
 
-closehowTo.addEventListener("click", function () {
+closehowTo.addEventListener("click", () => {
   howTo.classList.add("how-to-container--no-display");
 });
 
